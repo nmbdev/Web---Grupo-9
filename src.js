@@ -61,8 +61,8 @@ const obtenerCitasPorJornada = (especialidad, fecha_inicio, fecha_final, jornada
 }
 
 //TEST
-console.table(obtenerCitasPorJornada("","","","mañana"));
-console.table(obtenerCitasPorJornada("","","","tarde"));
+//console.table(obtenerCitasPorJornada("","","","mañana"));
+//console.table(obtenerCitasPorJornada("","","","tarde"));
 
 module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
 module.exports.obtenerCitasPorJornada = obtenerCitasPorJornada;

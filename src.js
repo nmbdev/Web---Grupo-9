@@ -206,6 +206,7 @@ const obtenerCitasPorJornada = (especialidad, fecha_inicio, fecha_final, jornada
     });
 }
 
+//comentario prueba
 //TEST
 //especialidad = "odontología";
 //fecha_inicio = "2020-01-01";

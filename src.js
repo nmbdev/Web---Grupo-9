@@ -5,7 +5,8 @@ import fetch from "node-fetch";
 const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) => {
     const API_URL = "https://misiontic2022upb.vercel.app/api/medical-appointments/appointments";
     
-    let citasDisponibles = await fetch(API_URL)
+    let citasDisponibles = await 
+        fetch(API_URL, {})
         .then( (response) => response.json() )
         .then( (json) => {
 
@@ -30,7 +31,8 @@ const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) 
 const confirmarCita = async (idCita) => {
     const API_URL = "https://misiontic2022upb.vercel.app/api/medical-appointments/confirm";
     
-    let cita = await fetch(
+    let cita = await 
+            fetch(
                 `${API_URL}/${idCita}`,
                 {
                     method: "POST",

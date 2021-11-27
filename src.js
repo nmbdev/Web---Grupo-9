@@ -20,7 +20,7 @@ const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) 
         })
         .catch( (error) => console.error(error) ); 
 
-    //console.table(citas);
+    console.table(citasDisponibles);
     return citasDisponibles;
 
 }
@@ -53,12 +53,12 @@ let fechaInicial = "2020-01-01";
 let fechaFinal = "2020-01-01";
 let id = 4;
 obtenerCitasDisponibles(especialidadMedica,fechaInicial,fechaFinal);
-confirmarCita(id);
+//confirmarCita(id);
 //*/
 
 //Exportación de módulos 
-module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
-module.exports.confirmarCita = confirmarCita;
+//module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
+//module.exports.confirmarCita = confirmarCita;
 
 //=============================================================================================
 

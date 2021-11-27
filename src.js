@@ -30,21 +30,18 @@ const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) 
 
 const confirmarCita = async (idCita) => {
     const API_URL = "https://misiontic2022upb.vercel.app/api/medical-appointments/confirm";
-    
+
     let cita = await 
             fetch(
-                `${API_URL}/${idCita}`,
+                `${API_URL}/${idCita}`, 
                 {
-                    method: "POST",
-                    headers: {
-                        "Content-Type":"application/json"
-                    }
+                    method: "POST"
                 }
             )
-            .then( (response) => response.json() )
+            .then( (response) => response.text() )
             .catch( (error) => console.error(error) ); 
 
-    console.log(cita);
+    console.table(`cita: ${cita}`);
     return cita;
 }
 
@@ -53,9 +50,10 @@ const confirmarCita = async (idCita) => {
 let especialidadMedica = "medicina";
 let fechaInicial = "2020-01-01";
 let fechaFinal = "2020-01-01";
-let id = 4;
+let id = 1;
+
 obtenerCitasDisponibles(especialidadMedica,fechaInicial,fechaFinal);
-//confirmarCita(id);
+confirmarCita(id);
 //*/
 
 //Exportación de módulos 

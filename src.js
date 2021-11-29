@@ -1,27 +1,27 @@
-import fetch from "node-fetch";
+//import fetch from "node-fetch";
 
 //===HU-04 - Obtener citas disponibles===
 
 const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) => {
     const API_URL = "https://misiontic2022upb.vercel.app/api/medical-appointments/appointments";
     
-    let citasDisponibles = await 
-        fetch(API_URL, {})
+    let citasDisponibles =
+        await fetch(API_URL, {})
         .then( (response) => response.json() )
         .then( (json) => {
 
             return json.filter(element=> (
                 especialidad == element.especialidad 
                 && 
-                new Date(element.fecha) >= new Date(fecha_inicio)
+                Date.parse(element.fecha) >= Date.parse(fecha_inicio)
                 &&
-                new Date(element.fecha) <= new Date(fecha_final)
+                Date.parse(element.fecha) <= Date.parse(fecha_final)
             ));
 
         })
-        .catch( (error) => console.error(error) ); 
+        .catch( (error) => console.log(error) ); 
 
-    console.table(citasDisponibles);
+    //console.table(await citasDisponibles);
     return citasDisponibles;
 
 }
@@ -31,34 +31,41 @@ const obtenerCitasDisponibles = async (especialidad, fecha_inicio, fecha_final) 
 const confirmarCita = async (idCita) => {
     const API_URL = "https://misiontic2022upb.vercel.app/api/medical-appointments/confirm";
 
-    let cita = await 
-            fetch(
-                `${API_URL}/${idCita}`, 
-                {
-                    method: "POST"
-                }
-            )
-            .then( (response) => response.text() )
-            .catch( (error) => console.error(error) ); 
+    let cita =
+        await fetch(
+            `${API_URL}/${idCita}`, 
+            {
+                method: "POST"
+            }
+        )
+        .then( (response) => response.json() )
+        //.then( (resp) => String(resp) )         
+        .catch( (error) => console.log(error) );
 
-    console.table(`cita: ${cita}`);
+    //console.log(await cita);
     return cita;
 }
 
 //Test
-///*
+/*
 let especialidadMedica = "medicina";
 let fechaInicial = "2020-01-01";
 let fechaFinal = "2020-01-01";
-let id = 1;
+let id = 4;
 
-obtenerCitasDisponibles(especialidadMedica,fechaInicial,fechaFinal);
-confirmarCita(id);
+let citasDisp = obtenerCitasDisponibles(especialidadMedica,fechaInicial,fechaFinal);
+let citaConID = confirmarCita(id);
+
+//console.table(await citasDisp);
+//console.info(await citaConID);
+//console.log("\n\n============================================================\n\n");
+//console.table(citasDisp);
+//console.info(citaConID);
 //*/
 
 //Exportación de módulos 
-//module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
-//module.exports.confirmarCita = confirmarCita;
+module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
+module.exports.confirmarCita = confirmarCita;
 
 
 

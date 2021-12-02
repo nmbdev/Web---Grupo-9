@@ -1,3 +1,41 @@
+const express       = require("express");
+const app           = express();
+const appointments  = require('./appointments.json');
+
+app.use(express.urlencoded({extended:false}));
+app.use(express.json());
+
+//===HU-07 - Petición GET===
+
+app.get('/api/medical-appointments/apointments',(req, res)=>{
+
+    //CODIGO
+
+});
+
+//===HU-08 - Petición POST===
+
+app.post('/api/medical-appointments/confirm/:appointment_id',(req, res)=>{
+    let {appointment_id} = req.params;
+
+    appointments=appointments.map(appointment=>{
+        if(appointment.id === parseInt(appointment_id)){
+            appointment.status = "confirmed";
+            res.status(200).json(appointments);
+        }
+    });
+    //console.table(appointments);
+    
+});
+
+//Test
+
+module.exports = app;
+
+
+//=============================================================================================
+
+/*
 //import fetch from "node-fetch";
 
 //===HU-04 - Obtener citas disponibles===
@@ -63,10 +101,11 @@ let citaConID = confirmarCita(id);
 //console.info(citaConID);
 //*/
 
+/*
 //Exportación de módulos 
 module.exports.obtenerCitasDisponibles = obtenerCitasDisponibles;
 module.exports.confirmarCita = confirmarCita;
-
+*/
 
 
 

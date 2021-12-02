@@ -8,9 +8,7 @@ app.use(express.json());
 //===HU-07 - Petición GET===
 
 app.get('/api/medical-appointments/apointments',(req, res)=>{
-
-    //CODIGO
-
+    res.status(200).json(appointments);
 });
 
 //===HU-08 - Petición POST===
